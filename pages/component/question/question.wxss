@@ -1,1 +1,18 @@
 /* question.wxss */
+.question {
+  width: 100%;
+  height: 120rpx;
+  border-bottom: 2rpx silver solid;
+  display: flex;
+}
+
+.q-title {
+  width: 100%;
+  height: 70rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  padding: 0 40rpx;
+}

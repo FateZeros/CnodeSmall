@@ -1,4 +1,4 @@
 <!--question.wxml-->
-<text>
-  问答模块
-</text>
+<view class="question" wx:for="{{questionList}}" wx:key="{{item.index}}">
+  <view class="q-title">{{item.title}}</view>
+</view>
