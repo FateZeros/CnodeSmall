@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/component/index/index",
+    "pages/component/share/share",
+    "pages/component/question/question",
+    "pages/component/user/user",
+    "pages/component/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#1afa29",
+    "borderStyle": "black",
+    "list": [{
+      "selectedIconPath": "imgs/home1.png",
+      "iconPath": "imgs/home2.png",
+      "pagePath": "pages/component/index/index",
+      "text": "首页"
+    }, {
+      "selectedIconPath": "imgs/elite1.png",
+      "iconPath": "imgs/elite2.png",
+      "pagePath": "pages/component/share/share",
+      "text": "分享"
+    }, {
+      "selectedIconPath": "imgs/question1.png",
+      "iconPath": "imgs/question2.png",
+      "pagePath": "pages/component/question/question",
+      "text": "问答"
+    },
+    {
+      "selectedIconPath": "imgs/login1.png",
+      "iconPath": "imgs/login2.png",
+      "pagePath": "pages/component/user/user",
+      "text": "个人"
+    }] 
+  }
+}
