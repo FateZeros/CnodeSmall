@@ -81,7 +81,7 @@ Page({
         const { data } = res.data
         this.setData({
           curPage: page + 1,
-          questionList: data
+          questionList: [...this.data.questionList, ...data]
         })
       }
     })

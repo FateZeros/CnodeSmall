@@ -1,4 +1,24 @@
 <!--index.wxml-->
-<view class="container">
- 
+<view class="weui-tab">
+    <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view 
+            id="{{index}}" 
+            class="weui-navbar__item {{ activeIndex == index ?                               'weui-bar__item_on' : '' }}" 
+            bindtap="tabClick">
+              <view class="weui-navbar__title">
+                {{item}}
+              </view>
+          </view>
+        </block>
+        <view 
+          class="weui-navbar__slider"
+          style="left: {{sliderLeft}}px; transform: translateX({                            {sliderOffset}}px); -webkit-transform: translateX({                        {sliderOffset}}px);">
+        </view>
+    </view>
+    <view class="weui-tab__panel">
+        <view>Page 1</view>
+        <view style="display:none">Page 2</view>
+        <view style="display:none">Page 3</view>
+    </view>
 </view>
