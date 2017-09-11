@@ -13,7 +13,7 @@ Page({
     // 是否正在加载页面
     isLoadingPage: true,
     // 加载更多数据 0-加载完成 1-正在加载数据 2-暂无数据
-    loadingStatus: 2
+    loadingStatus: 3
   },
 
   /**

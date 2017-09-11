@@ -5,6 +5,14 @@
   position: relative;
 }
 
+.img-arrow {
+  position: absolute;
+  right: 32rpx;
+  top: 90rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
 .q-title {
   width: 100%;
   height: 70rpx;

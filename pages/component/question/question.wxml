@@ -18,6 +18,7 @@
         <text>{{item.create_at}}</text>
       </view>
   </view>
+  <image src="../../../imgs/r-arrow.png" class="img-arrow" />
 </view>
 
 <template is="loadingToast" data="{{isLoadingPage}}" />
