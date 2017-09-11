@@ -3,8 +3,12 @@
 /* question.wxss */
 .question {
   width: 100%;
-  border-bottom: 2rpx silver solid;
+  border-bottom: 2rpx #eee solid;
   position: relative;
+}
+
+.question:first-child {
+  border-top: 1rpx #eee solid;
 }
 
 .img-arrow {

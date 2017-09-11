@@ -1,0 +1,42 @@
+<!--detail.wxml-->
+<view class="topic-detail">
+  <view class="detail-header">
+    <view class="title"> 
+      <view class="q-tag">
+        {{detailData.tabName}}
+      </view>
+      {{detailData.title}}
+    </view>
+    <view class="title-info">
+      <text class="info-item">发布于{{detailData.create_at}}</text>
+      <text class="info-item">作者{{detailData.author.loginname}}</text>
+    </view>
+    <view class="title-info">
+      <text class="info-item">{{detailData.visit_count}}次浏览</text>
+      <text class="info-item">{{detailData.reply_count}}回复</text>
+    </view>
+  </view>
+  <view
+    class="content"
+  >
+    {{detailData.content}}
+  </view>
+</view>
+<view class="reply-content">
+  <view>
+  </view>
+</view>
+<view class="reply-foot">
+  <view class="foot-item">
+    <image src="../../../imgs/collect1.png" class="foot-icon" />
+    收藏
+  </view>
+  <view class="foot-item">
+    <image src="../../../imgs/reply-icon.png" class="foot-icon" />
+    评论
+  </view>
+  <view class="foot-item">
+     <image src="../../../imgs/thumb1.png" class="foot-icon" />
+    点赞
+  </view>
+</view>

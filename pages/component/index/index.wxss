@@ -1,7 +1,7 @@
 /**index.wxss**/
 .question {
   width: 100%;
-  border-bottom: 2rpx silver solid;
+  border-bottom: 1rpx #eee solid;
   position: relative;
 }
 
