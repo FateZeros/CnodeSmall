@@ -1,11 +1,26 @@
 <!--share.wxml-->
-<view class="weui-loadmore">
-    <i class="weui-loading"></i>
-    <span class="weui-loadmore__tips">正在加载</span>
+<import src="../../common/loadingToast/loadingToast.wxml" />
+<import src="../../common/loadingMore/loadingMore.wxml" />
+
+<view class="question" wx:for="{{shareList}}" wx:key="{{item.index}}">
+  <view class="q-title">
+      <view class="q-tag">
+        分享
+      </view>
+      {{item.title}}
+  </view>
+   <view class="q-info">
+      <view class="q-author">
+        <image src="{{item.author.avatar_url}}" class="author-img" />
+      </view>
+      <view class="author-info">
+        <text>{{item.author.loginname}}</text>
+        <text>{{item.create_at}}</text>
+      </view>
+  </view>
 </view>
-<view class="weui-loadmore weui-loadmore_line">
-    <span class="weui-loadmore__tips">暂无数据</span>
-</view>
-<view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
-    <span class="weui-loadmore__tips">加载完成</span>
-</view>
+
+<template is="loadingToast" data="{{isLoadingPage}}" />
+<template is="loadingMore" data="{{loadingStatus}}" />
+
+

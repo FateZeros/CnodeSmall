@@ -1,0 +1,23 @@
+<!--loadingMore.wxml-->
+<template name="loadingMore">
+<view 
+  class="weui-loadmore weui-loadmore_line"
+  wx:if="{{loadingStatus == 0}}"
+>
+    <span class="weui-loadmore__tips">加载完成</span>
+</view> 
+<view 
+  class="weui-loadmore" 
+  wx:if="{{loadingStatus == 1}}"
+>
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在加载</span>
+</view>
+
+<view
+  class="weui-loadmore weui-loadmore_line weui-loadmore_dot"
+  wx:if="{{loadingStatus == 2}}"
+>
+    <span class="weui-loadmore__tips">暂无数据</span>
+</view>
+</template>

@@ -1,4 +1,5 @@
 // question.js
+const util = require('../../../utils/util.js')
 
 Page({
   /**
@@ -10,7 +11,9 @@ Page({
     // 问答列表
     questionList: [],
     // 是否正在加载页面
-    isLoadingPage: true
+    isLoadingPage: true,
+    // 加载更多数据 0-加载完成 1-正在加载数据 2-暂无数据
+    loadingStatus: 2
   },
 
   /**
@@ -59,7 +62,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getQuestionList(this.data.curPage)
+    this.setData({
+      loadingStatus: 1
+    })
+    // 显示加载更多数据loading，故设置此延迟
+    setTimeout(() => {
+      this.getQuestionList(this.data.curPage)
+    }, 1500) 
   },
 
   /**
@@ -79,12 +88,24 @@ Page({
         limit: 10
       },
       success: res => {
-        const { data } = res.data
-        this.setData({
-          curPage: page + 1,
-          isLoadingPage: false,
-          questionList: [...this.data.questionList, ...data]
-        })
+        let { data } = res.data
+        // 没有数据
+        if (data.length == 0) {
+          this.setData({
+            loadingStatus: 2,
+            isLoadingPage: false
+          })
+        } else {
+          data.forEach(item => {
+            item.create_at = util.formatTime(new Date(item.create_at))
+          })
+          this.setData({
+            curPage: page + 1,
+            isLoadingPage: false,
+            loadingStatus: 2,
+            questionList: [...this.data.questionList, ...data]
+          })
+        }
       }
     })
   }

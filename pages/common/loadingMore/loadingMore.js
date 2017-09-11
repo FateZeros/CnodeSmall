@@ -1,0 +1,4 @@
+// loadingMore.js
+Page({
+
+})

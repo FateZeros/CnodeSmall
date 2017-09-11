@@ -1,6 +1,20 @@
 <!-- 首页-全部数据 allData.wxml-->
 <template name="allData">
-  <view>
-    全部数据
+  <view class="question" wx:for="{{dataList}}" wx:key="{{item.index}}">
+  <view class="q-title">
+      <view class="q-tag tag-all">
+        全部
+      </view>
+      {{item.title}}
   </view>
+   <view class="q-info">
+      <view class="q-author">
+        <image src="{{item.author.avatar_url}}" class="author-img" />
+      </view>
+      <view class="author-info">
+        <text>{{item.author.loginname}}</text>
+        <text>{{item.create_at}}</text>
+      </view>
+  </view>
+</view>
 </template>

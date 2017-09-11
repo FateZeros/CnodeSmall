@@ -1,18 +1,26 @@
 // share.js
+const util = require('../../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    // 当前页数
+    curPage: 1,
+    // 分享列表
+    shareList: [],
+    // 是否正在加载页面
+    isLoadingPage: true,
+    // 加载更多数据 0-加载完成 1-正在加载数据 2-暂无数据
+    loadingStatus: 2
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getShareList(this.data.curPage)
   },
 
   /**
@@ -54,7 +62,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.setData({
+      loadingStatus: 1
+    })
+    // 显示加载更多数据loading，故设置此延迟
+    setTimeout(() => {
+      this.getShareList(this.data.curPage)
+    }, 1500)
   },
 
   /**
@@ -62,5 +76,37 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  getShareList: function (page) {
+    wx.request({
+      url: 'https://cnodejs.org/api/v1/topics',
+      method: 'get',
+      data: {
+        tab: 'share',
+        page,
+        limit: 10
+      },
+      success: res => {
+        let { data } = res.data
+        // 没有数据
+        if (data.length == 0) {
+          this.setData({
+            loadingStatus: 2,
+            isLoadingPage: false
+          })
+        } else {
+          data.forEach(item => {
+            item.create_at = util.formatTime(new Date(item.create_at))
+          })
+          this.setData({
+            curPage: page + 1,
+            isLoadingPage: false,
+            loadingStatus: 2,
+            shareList: [...this.data.shareList, ...data]
+          })
+        }
+      }
+    })
   }
 })

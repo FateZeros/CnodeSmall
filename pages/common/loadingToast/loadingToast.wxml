@@ -1,6 +1,6 @@
 <!--loadingToast.wxml-->
 <template name="loadingToast">
-<view id="loadingToast" style="display: {{isLoadingPage ? 'initial' : 'none' }}">
+<view id="loadingToast" wx:if="{{isLoadingPage}}">
     <view class="weui-mask_transparent"></view>
     <view class="weui-toast">
         <i class="weui-loading weui-icon_toast"></i>
