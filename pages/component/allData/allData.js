@@ -1,30 +1,25 @@
-// question.js
-
+// allData.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    // 当前页数
-    curPage: 1,
-    // 问答列表
-    questionList: [],
-    // 是否正在加载页面
-    isLoadingPage: true
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    this.getQuestionList(this.data.curPage) 
+  onLoad: function (options) {
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+  
   },
 
   /**
@@ -59,7 +54,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getQuestionList(this.data.curPage)
+  
   },
 
   /**
@@ -67,25 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-
-  getQuestionList: function(page) {
-    wx.request({
-      url: 'https://cnodejs.org/api/v1/topics',
-      method: 'get',
-      data: {
-        tab: 'ask',
-        page,
-        limit: 10
-      },
-      success: res => {
-        const { data } = res.data
-        this.setData({
-          curPage: page + 1,
-          isLoadingPage: false,
-          questionList: [...this.data.questionList, ...data]
-        })
-      }
-    })
   }
 })

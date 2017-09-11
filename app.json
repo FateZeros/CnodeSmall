@@ -4,7 +4,10 @@
     "pages/component/share/share",
     "pages/component/question/question",
     "pages/component/user/user",
-    "pages/component/logs/logs"
+    "pages/component/logs/logs",
+    "pages/component/allData/allData",
+    "pages/component/essence/essence",
+    "pages/common/loadingToast/loadingToast"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -35,5 +35,8 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  onUnload: function() {
+    wx.clearStorageSync()
   }
 })

@@ -1,0 +1,6 @@
+<!-- 首页-全部数据 allData.wxml-->
+<template name="allData">
+  <view>
+    全部数据
+  </view>
+</template>

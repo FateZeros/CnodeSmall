@@ -1,0 +1,10 @@
+<!--loadingToast.wxml-->
+<template name="loadingToast">
+<view id="loadingToast" style="display: {{isLoadingPage ? 'initial' : 'none' }}">
+    <view class="weui-mask_transparent"></view>
+    <view class="weui-toast">
+        <i class="weui-loading weui-icon_toast"></i>
+        <p class="weui-toast__content">数据加载中</p>
+    </view>
+</view>
+</template>

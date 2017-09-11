@@ -1,0 +1,6 @@
+<!-- 首页-精华数据 essence.wxml-->
+<template name="essenceData">
+  <view>
+    精华数据
+  </view>
+</template>

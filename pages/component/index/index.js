@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var sliderWidth = 96
 Page({
   data: {
     tabs: ["全部", "精华"],
@@ -12,8 +13,10 @@ Page({
   onLoad: function () {
     wx.getSystemInfo({
       success: (res) => {
+        console.log(res.windowWidth, this.data.tabs.length)
         this.setData({
-          sliderOffset: res.windowWidth / this.data.tabs.length *                                 this.data.activeIndex
+          sliderLeft: (res.windowWidth / this.data.tabs.length -                                sliderWidth ) / 2,
+          sliderOffset: res.windowWidth / this.data.tabs.length *                               this.data.activeIndex
         })
       },
     })

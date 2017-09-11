@@ -1,4 +1,7 @@
 <!--index.wxml-->
+<import src="../allData/allData.wxml" />
+<import src="../essence/essence.wxml" />
+
 <view class="weui-tab">
     <view class="weui-navbar">
         <block wx:for="{{tabs}}" wx:key="*this">
@@ -11,14 +14,21 @@
               </view>
           </view>
         </block>
-        <view 
-          class="weui-navbar__slider"
-          style="left: {{sliderLeft}}px; transform: translateX({                            {sliderOffset}}px); -webkit-transform: translateX({                        {sliderOffset}}px);">
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px;              transform: translateX({{sliderOffset}}px); -webkit-transform:              translateX({{sliderOffset}}px);">
         </view>
     </view>
     <view class="weui-tab__panel">
-        <view>Page 1</view>
-        <view style="display:none">Page 2</view>
-        <view style="display:none">Page 3</view>
+        <view
+          class="weui-tab__content"
+          hidden="{{activeIndex != 0}}
+        >
+          <template is="allData" />
+        </view>
+        <view
+          class="weui-tab__content"
+          hidden="{{activeIndex != 1}}
+        >
+          <template is="essenceData" />
+        </view>
     </view>
 </view>

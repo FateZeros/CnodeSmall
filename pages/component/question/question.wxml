@@ -1,4 +1,9 @@
 <!--question.wxml-->
+<import src="../../common/loadingToast/loadingToast.wxml" />
+
 <view class="question" wx:for="{{questionList}}" wx:key="{{item.index}}">
   <view class="q-title">{{item.title}}</view>
 </view>
+
+<template is="loadingToast" data="{{isLoadingPage}}" />
+
