@@ -10,8 +10,6 @@ Page({
     curPage: 1,
     // 分享列表
     shareList: [],
-    // 是否正在加载页面
-    isLoadingPage: true,
     // 加载更多数据 0-加载完成 1-正在加载数据 2-暂无数据
     loadingStatus: 3
   },
@@ -20,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中'
+    })
     this.getShareList(this.data.curPage)
   },
 
@@ -101,9 +102,10 @@ Page({
           })
           this.setData({
             curPage: page + 1,
-            isLoadingPage: false,
             loadingStatus: 2,
             shareList: [...this.data.shareList, ...data]
+          }, () => {
+            wx.hideLoading()
           })
         }
       }

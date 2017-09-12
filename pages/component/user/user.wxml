@@ -8,18 +8,27 @@
         src="{{userInfo.avatarUrl}}"
         background-size="cover">
       </image>
-      <view class="userinfo-nickname" wx:if="{{userInfo.nickName}}">
+      <!-- <view class="userinfo-nickname" wx:if="{{userInfo.nickName}}">
         {{userInfo.nickName}}
-      </view>
-      <button 
+      </view> -->
+      <button
+        bindtap="handleScanCode"
+        wx:if="{{!cnodeAccessTK}}"
+        > 
+        扫码登录
+      </button>
+      <!-- <button 
         wx:if="{{!hasUserInfo && canIUse}}"
         open-type="getUserInfo"        
         bindgetuserinfo="getUserInfo"> 
-        登录
-      </button>
+        扫码登录
+      </button> -->
     </block>
   </view>
-  <view class="usercont" wx:if="{{hasUserInfo && canIUse}}">
+  <view 
+    class="usercont" 
+    wx:if="{{!!cnodeAccessTK}}"
+  >
     <block>
       <view class="useritem">
         <view class="usericon">

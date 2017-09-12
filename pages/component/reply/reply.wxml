@@ -1,0 +1,11 @@
+<!--reply.wxml-->
+<view class="form-page">
+  <form
+    bindsubmit="formSubmit" 
+  >
+    <textarea
+      auto-focus
+      class="text-area"
+    />
+  </form>
+</view>

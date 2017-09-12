@@ -2,7 +2,6 @@
 <import src="../allData/allData.wxml" />
 <import src="../essence/essence.wxml" />
 
-<import src="../../common/loadingToast/loadingToast.wxml" />
 <import src="../../common/loadingMore/loadingMore.wxml" />
 
 <view class="weui-tab">
@@ -42,5 +41,4 @@
     </view>
 </view>
 
-<template is="loadingToast" data="{{isLoadingPage}}" />
 <template is="loadingMore" data="{{loadingStatus}}" />

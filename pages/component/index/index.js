@@ -18,8 +18,6 @@ Page({
     dataList: [],
     // 精华列表
     essenceList: [],
-    // 是否正在加载页面
-    isLoadingPage: true,
     // 加载更多数据 0-加载完成 1-正在加载数据 2-暂无数据
     loadingStatus: 3
   },
@@ -32,6 +30,9 @@ Page({
           sliderOffset: res.windowWidth / this.data.tabs.length *                               this.data.activeIndex
         })
       },
+    })
+    wx.showLoading({
+      title: '加载中'
     })
     this.getDataList(0, this.data.curPage)
   },
@@ -83,8 +84,7 @@ Page({
         // 没有数据
         if (data.length == 0) {
           this.setData({
-            loadingStatus: 2,
-            isLoadingPage: false
+            loadingStatus: 2
           })
         } else {
           data.forEach(item => {
@@ -96,13 +96,16 @@ Page({
               isLoadingPage: false,
               loadingStatus: 2,
               dataList: [...this.data.dataList, ...data]
+            }, () => {
+              wx.hideLoading()
             })
           } else {
             this.setData({
               curEssencePage: page + 1,
-              isLoadingPage: false,
               loadingStatus: 2,
               essenceList: [...this.data.essenceList, ...data]
+            }, () => {
+              wx.hideLoading()
             })
           }
           

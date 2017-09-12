@@ -8,7 +8,7 @@
     "pages/component/allData/allData",
     "pages/component/essence/essence",
     "pages/component/detail/detail",
-    "pages/common/loadingToast/loadingToast",
+    "pages/component/reply/reply",
     "pages/common/loadingMore/loadingMore"
   ],
   "window":{

@@ -10,8 +10,6 @@ Page({
     curPage: 1,
     // 问答列表
     questionList: [],
-    // 是否正在加载页面
-    isLoadingPage: true,
     // 加载更多数据 0-加载完成 1-正在加载数据 2-暂无数据
     loadingStatus: 3
   },
@@ -20,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getQuestionList(this.data.curPage) 
   },
 
@@ -104,9 +105,10 @@ Page({
           })
           this.setData({
             curPage: page + 1,
-            isLoadingPage: false,
             loadingStatus: 2,
             questionList: [...this.data.questionList, ...data]
+          }, () => {
+            wx.hideLoading()
           })
         }
       }

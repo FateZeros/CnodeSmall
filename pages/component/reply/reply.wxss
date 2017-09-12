@@ -1,0 +1,17 @@
+/* reply.wxss */
+.form-page {
+  width: 100%;
+  height: 100vh;
+  background: #f7f7fa; 
+  position: relative;
+}
+
+.text-area {
+  width: 100%;
+  background: #fff;
+  margin: 0 auto;
+  padding: 40rpx;
+  box-sizing: border-box;
+  position: absolute;
+  top: 40rpx;
+}

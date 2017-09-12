@@ -1,6 +1,4 @@
 <!--detail.wxml-->
-<import src="../../common/loadingToast/loadingToast.wxml" />
-
 <view class="topic-detail">
   <view class="detail-header">
     <view class="title"> 
@@ -24,7 +22,10 @@
     {{detailData.content}}
   </view>
 </view>
-<view class="reply-container">
+<view 
+  class="reply-container"
+  wx:if="{{detailData.reply_count !== 0}}"
+>
   <view class="reply-title">
     回复
   </view>
@@ -33,11 +34,24 @@
     wx:for="{{detailData.replies}}"
     wx:key="{{item.id}}"
   >
-    <image src="{{item.author.avatar_url}}" class="reply-img"/>
+    <view class="reply-imgCont">
+      <image src="{{item.author.avatar_url}}" class="reply-img" />
+    </view>
     <view 
       class="reply-infos"
       bindtap="handleReply"
     >
+      <view 
+        class="thumb-cont"
+        catchtap="handleThumb"
+        data-id="{{item.id}}"
+      >
+        <image 
+          src="{{item.is_uped ? '../../../imgs/thumb2.png':                                 '../../../imgs/thumb1.png'}}" 
+          class="thumb-img">
+        </image>
+        {{item.ups.length > 99 ? '99+' : item.ups.length}}        
+      </view>
       <view class="reply-user">
         <view 
           class="q-tag-user"
@@ -58,19 +72,26 @@
     class="foot-item"
     bindtap="handleCollect"
   >
-    <image src="../../../imgs/collect1.png" class="foot-icon" />
+    <image 
+      src="{{detailData.is_collect ? '../../../imgs/collect2.png':                    '../../../imgs/collect1.png'}}" 
+      class="foot-icon" 
+    />
     收藏
   </view>
   <view
     class="foot-item"
+    bindtap="handleComment"
   >
-    <image src="../../../imgs/reply-icon.png" class="foot-icon" />
+    <image 
+      src="../../../imgs/reply-icon.png" 
+      class="foot-icon" />
     评论
   </view>
   <view class="foot-item">
-     <image src="../../../imgs/thumb1.png" class="foot-icon" />
+    <image 
+      src="../../../imgs/thumb1.png" 
+      class="thumb-icon" 
+    />
     点赞
   </view>
 </view>
-
-<template is="loadingToast" data="{{isLoadingPage}}" />
