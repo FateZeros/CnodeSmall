@@ -1,6 +1,12 @@
 <!-- 首页-精华数据 essence.wxml-->
 <template name="essenceData">
-  <view class="question" wx:for="{{essenceList}}" wx:key="{{item.index}}">
+  <view 
+    class="question"
+    wx:for="{{essenceList}}" 
+    wx:key="{{item.index}}"
+    bindtap="handleTodetail"
+    data-id="{{item.id}}"
+  >
   <view class="q-title">
       <view class="q-tag tag-essence">
         精华

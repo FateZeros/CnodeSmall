@@ -108,5 +108,16 @@ Page({
         }
       }
     })
+  },
+
+  /*
+  * 跳转到文章详情
+  */
+  handleTodetail: function (e) {
+    const { id } = e.currentTarget.dataset
+    // const id = '59b5e55e1b37e54f6793c46a'
+    wx.navigateTo({
+      url: `../detail/detail?id=${id}`,
+    })
   }
 })

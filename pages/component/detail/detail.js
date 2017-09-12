@@ -12,7 +12,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detailData: {}
+    detailData: {},
+    replyList: [],
+    // 是否正在加载页面
+    isLoadingPage: true,
   },
 
   /**
@@ -73,6 +76,9 @@ Page({
   
   },
 
+  /*
+  * 获取文章详情
+  */
   getTopicDetail: function(id) {
     wx.request({
       url: `https://cnodejs.org/api/v1/topic/${id}`,
@@ -84,10 +90,29 @@ Page({
         let { data } = res.data
         console.log(data)
         data.create_at = util.formatTime(new Date(data.create_at))
+        if (data.replies.length > 0) {
+          data.replies.forEach(item => {
+            item.create_at = util.formatTime(new Date(item.create_at))
+          })
+        }
         data.tabName = tabObj[data.tab]
         this.setData({
-          detailData: data
+          detailData: data,
+          isLoadingPage: false
         })
+      }
+    })
+  },
+
+  // 回复评论
+  handleReply: function() {
+    wx.showActionSheet({
+      itemList: ['回复'],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
       }
     })
   }

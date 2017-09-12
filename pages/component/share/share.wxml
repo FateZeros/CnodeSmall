@@ -2,7 +2,13 @@
 <import src="../../common/loadingToast/loadingToast.wxml" />
 <import src="../../common/loadingMore/loadingMore.wxml" />
 
-<view class="question" wx:for="{{shareList}}" wx:key="{{item.index}}">
+<view 
+  class="question" 
+  wx:for="{{shareList}}" 
+  wx:key="{{item.index}}"
+  bindtap="handleTodetail"
+  data-id="{{item.id}}"
+>
   <view class="q-title">
       <view class="q-tag">
         分享

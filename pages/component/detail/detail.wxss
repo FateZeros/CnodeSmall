@@ -1,7 +1,7 @@
 /* detail.wxss */
 .topic-detail {
   padding-bottom: 40rpx;
-  background: #f7f7f7;
+  /* background: #f7f7f7; */
 }
 
 .detail-header {
@@ -53,7 +53,7 @@
   padding: 0 10rpx;
   height: 48rpx;
   line-height: 44rpx;
-  font-size: 12px;
+  font-size: 24rpx;
   border-radius: 8rpx;
   box-sizing: border-box;
   border: 1rpx solid transparent;
@@ -63,11 +63,85 @@
   color: #81007f;
 }
 
+.q-tag-user {
+  display: inline-block;
+  padding: 0 10rpx;
+  height: 36rpx;
+  line-height: 34rpx;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  border: 1rpx solid transparent;
+  white-space: nowrap;
+  background-color: rgba(18,206,102,.1);
+  border-color: rgba(18,206,102,.2);
+  color: #13ce66;
+}
+
+.reply-container {
+  padding-bottom: 120rpx;  
+}
+
+.reply-title {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #f7f7fa;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+
+.reply-item {
+  width: 100%;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  padding: 10rpx 40rpx;
+  border-bottom: 1rpx #eee solid;
+}
+
+.reply-img {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-top: 16rpx;
+}
+
+.reply-infos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+
+.reply-user {
+  height: 40rpx;
+  width: 100%;
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+
+.reply-time {
+  height: 40rpx;
+  width: 100%;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  color: #838383;
+}
+
+.reply-content {
+  width: 100%;
+  font-size: 24rpx;
+}
+
 .reply-foot {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 80rpx;
+  height: 100rpx;
   display: flex;
   border-top: 1rpx #eee solid;
   background: #f7f7fa;
@@ -76,9 +150,9 @@
 
 .foot-item {
   flex: 1;
-  height: 80rpx;
+  height: 100rpx;
   font-size: 28rpx;
-  line-height: 80rpx;
+  line-height: 100rpx;
   display: flex;
   justify-content: center;
 }
@@ -86,6 +160,6 @@
 .foot-icon {
   width: 48rpx;
   height: 48rpx;
-  margin-top: 16rpx;
+  margin-top: 26rpx;
   margin-right: 12rpx;
 }

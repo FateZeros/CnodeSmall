@@ -25,13 +25,19 @@
           class="weui-tab__content"
           hidden="{{activeIndex != 0}}
         >
-          <template is="allData" data="{{dataList}}" />
+          <template 
+            is="allData" 
+            data="{{dataList, handleTodetail}}"
+          />
         </view>
         <view
           class="weui-tab__content"
           hidden="{{activeIndex != 1}}
         >
-          <template is="essenceData" data="{{essenceList}}" />
+          <template
+            is="essenceData"
+            data="{{essenceList, handleTodetail}}" 
+          />
         </view>
     </view>
 </view>

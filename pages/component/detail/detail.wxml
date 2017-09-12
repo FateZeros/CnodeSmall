@@ -1,4 +1,6 @@
 <!--detail.wxml-->
+<import src="../../common/loadingToast/loadingToast.wxml" />
+
 <view class="topic-detail">
   <view class="detail-header">
     <view class="title"> 
@@ -17,21 +19,51 @@
     </view>
   </view>
   <view
-    class="content"
+     class="content"
   >
     {{detailData.content}}
   </view>
 </view>
-<view class="reply-content">
-  <view>
+<view class="reply-container">
+  <view class="reply-title">
+    回复
+  </view>
+  <view 
+    class="reply-item" 
+    wx:for="{{detailData.replies}}"
+    wx:key="{{item.id}}"
+  >
+    <image src="{{item.author.avatar_url}}" class="reply-img"/>
+    <view 
+      class="reply-infos"
+      bindtap="handleReply"
+    >
+      <view class="reply-user">
+        <view 
+          class="q-tag-user"
+          wx:if="{{item.author.loginname == detailData.author.loginname}}">
+        作者
+        </view>
+        {{item.author.loginname}}
+      </view>
+      <view class="reply-time">{{item.create_at}}</view>
+      <view class="reply-content">
+        {{item.content}}
+      </view>
+    </view>
   </view>
 </view>
 <view class="reply-foot">
-  <view class="foot-item">
+  <view 
+    class="foot-item"
+    bindtap="handleCollect"
+  >
     <image src="../../../imgs/collect1.png" class="foot-icon" />
     收藏
   </view>
-  <view class="foot-item">
+  <view
+    class="foot-item"
+  >
     <image src="../../../imgs/reply-icon.png" class="foot-icon" />
     评论
   </view>
@@ -40,3 +72,5 @@
     点赞
   </view>
 </view>
+
+<template is="loadingToast" data="{{isLoadingPage}}" />
