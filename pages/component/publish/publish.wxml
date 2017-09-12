@@ -1,0 +1,49 @@
+<!--publish.wxml-->
+<view class="publish-page">
+  <picker 
+    bindchange="bindPickerChange"
+    value="{{chosedtype}}" 
+    range="{{typeArr}}"
+  >
+    <view class="picker">
+      <view class="choose-type">
+        选择类型
+      </view>
+      <view class="chosedtype">
+        {{typeArr[chosedtype]}}
+      </view>
+      <view class="rightarrow">
+        <image src="../../../imgs/r-arrow.png" class="img-arrow"/>
+      </view>
+    </view>
+  </picker>
+  <form bindsubmit="formSubmit">
+  <view class="topic-title">
+    <view class="title-label">
+      标题
+    </view>
+    <input 
+      class="title-input"
+      name="topicTitle"
+    />
+  </view>
+  <view class="topic-cont">
+    <view class="title-label">
+      内容
+    </view>
+    <textarea
+      maxlength="-1"
+      class="cont-area"
+      name="topicCont"
+    />
+  </view>
+  <view class="btn-area">
+    <button 
+      type="primary"
+      formType="submit"
+    >
+      发表
+    </button>
+  </view>
+  </form>
+</view>

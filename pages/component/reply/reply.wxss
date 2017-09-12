@@ -15,3 +15,11 @@
   position: absolute;
   top: 40rpx;
 }
+
+.btn-area {
+  position: absolute;
+  top: 400rpx;
+  width: 80%;
+  left: 50%;
+  margin-left: -40%;
+}

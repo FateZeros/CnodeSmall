@@ -67,3 +67,7 @@
   height: 64rpx;
   margin-top: 18rpx;
 }
+
+.btn-login {
+  font-size: 28rpx;
+}

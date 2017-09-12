@@ -28,7 +28,7 @@ Page({
     })
     
     // 获取cnodeAccessTK
-    const cnodeAccessTK = wx.getStorageSync('cnodeAccessTK')
+    const { cnodeAccessTK = '' } = wx.getStorageSync('userLocal')
     if (cnodeAccessTK) {
       this.setData({
         cnodeAccessTK
@@ -120,7 +120,8 @@ Page({
   /*
   * 回复
   */
-  handleReply: function() {
+  handleReply: function(e) {
+    const { topicid, replyid } = e.currentTarget.dataset
     wx.showActionSheet({
       itemList: ['回复'],
       success: res => {
@@ -128,7 +129,7 @@ Page({
         if (tabIndex == 0) {
           if (this.data.cnodeAccessTK) {
             wx.navigateTo({
-              url: '../reply/reply?replyType=reply',
+              url: `../reply/reply?replyType=reply&topicId=${topicid}&                          replyId=${replyid}`,
             })
           } else {
             this.toUserPage()
@@ -223,11 +224,13 @@ Page({
   /*
   * 评论
   */
-  handleComment: function() {
+  handleComment: function(e) {
+    console.log(e)
+    const { topicid } = e.currentTarget.dataset
     // console.log(this.data.cnodeAccessTK)
     if (this.data.cnodeAccessTK) {
       wx.navigateTo({
-        url: '../reply/reply?replyType=comment'
+        url: `../reply/reply?replyType=comment&topicId=${topicid}`
       })
     } else {
       this.toUserPage()

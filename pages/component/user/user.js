@@ -12,18 +12,26 @@ Page({
     cnodeAccessTK: ''
   },
   
-  //事件处理函数
-  bindViewTap: function() {
+  // 查看历史登录记录
+  checkLoginHistory: function() {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
 
   onLoad: function() {
-    const cnodeAccessTK = wx.getStorageSync('cnodeAccessTK')
+    const { 
+      cnodeAccessTK, 
+      loginname,
+      avatarUrl
+    } = wx.getStorageSync('userLocal')
     if (cnodeAccessTK) {
       this.setData({
-        cnodeAccessTK
+        cnodeAccessTK,
+        userInfo: {
+          avatarUrl,
+          loginname
+        }
       })
     }
   },
@@ -65,17 +73,59 @@ Page({
   //   })
   // },
 
+  /*
+  * 扫描二维码登录cnode社区
+  */
   handleScanCode: function () {
     wx.scanCode({
       onlyFromCamera: false,
       success: (res) => {
         // 获取cnode.org社区登录的accesstoken
+        wx.showLoading({
+          title: '登录中',
+        })
+        setTimeout(() => {
+          this.getUserInfo(res.result)
+        }, 1500) 
+      },
+      fail: () => {
+        wx.showToast({
+          title: '扫码失败',
+          image: '../../../imgs/fail.png',
+          duration: 1500
+        })
+      }
+    })
+  },
+
+  /*
+  * 根据二维码token获取用户信息
+  */
+  getUserInfo: function(token) {
+    wx.request({
+      url: 'https://cnodejs.org/api/v1/accesstoken',
+      method: 'post',
+      data: {
+        accesstoken: token 
+      },
+      success: res => {
+        // 用户名 用户头像 用户ID
+        const { loginname, avatar_url: avatarUrl, id: userId } = res.data
         wx.setStorage({
-          key: "cnodeAccessTK",
-          data: res.result,
+          key: "userLocal",
+          data: {
+            cnodeAccessTK: token,
+            loginname,
+            userId,
+            avatarUrl
+          },
           success: () => {
             this.setData({
-              cnodeAccessTK: res.result
+              cnodeAccessTK: token,
+              userInfo: {
+                avatarUrl,
+                loginname
+              }
             })
             wx.showToast({
               title: '登录成功',
@@ -83,15 +133,46 @@ Page({
               duration: 1500
             })
           }
-        }) 
+        })        
       },
-      fail: () => {
+      fail: function() {
         wx.showToast({
           title: '登录失败',
           image: '../../../imgs/fail.png',
           duration: 1500
         })
+      },
+      complete: function() {
+        wx.hideLoading()
       }
     })
+  },
+
+  handleToPage: function(e) {
+    const { pagename } = e.currentTarget.dataset
+    switch (pagename) {
+      case 'publish':
+        wx.navigateTo({
+          url: '../publish/publish'
+        })
+        break;
+      case 'collect':
+        wx.navigateTo({
+          url: '../collect/collect'
+        })
+        break;
+      case 'message':
+        wx.navigateTo({
+          url: '../message/message'
+        })
+        break;
+      case 'setting':
+        wx.navigateTo({
+          url: '../setting/setting'
+        })
+        break;
+      default:
+        break;  
+    } 
   }
 })

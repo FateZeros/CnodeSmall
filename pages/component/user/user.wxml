@@ -3,17 +3,19 @@
   <view class="userinfo">
     <block>
       <image
-        bindtap="bindViewTap"
+        bindtap="checkLoginHistory"
         class="userinfo-avatar" 
         src="{{userInfo.avatarUrl}}"
         background-size="cover">
       </image>
-      <!-- <view class="userinfo-nickname" wx:if="{{userInfo.nickName}}">
-        {{userInfo.nickName}}
-      </view> -->
+      <view class="userinfo-nickname" wx:if="{{userInfo.loginname}}">
+        {{userInfo.loginname}}
+      </view> 
       <button
         bindtap="handleScanCode"
         wx:if="{{!cnodeAccessTK}}"
+        type="primary"
+        class="btn-login"
         > 
         扫码登录
       </button>
@@ -30,7 +32,24 @@
     wx:if="{{!!cnodeAccessTK}}"
   >
     <block>
-      <view class="useritem">
+      <view 
+        class="useritem"
+        data-pagename="publish"
+        bindtap="handleToPage"
+      >
+        <view class="usericon">
+          <image src="../../../imgs/publish.png" class="img-icon" />
+        </view>
+        发表
+        <view class="rightarrow">
+          <image src="../../../imgs/r-arrow.png" class="img-arrow"/>
+        </view>
+      </view>
+      <view 
+        class="useritem"
+        data-pagename="collect"
+        bindtap="handleToPage"
+      >
         <view class="usericon">
           <image src="../../../imgs/collect.png" class="img-icon" />
         </view>
@@ -39,7 +58,11 @@
           <image src="../../../imgs/r-arrow.png" class="img-arrow"/>
         </view>
       </view>
-      <view class="useritem">
+      <view
+        class="useritem"
+        data-pagename="message"
+        bindtap="handleToPage"
+      >
         <view class="usericon">
           <image src="../../../imgs/msg.png" class="img-icon" />
         </view>
@@ -48,7 +71,11 @@
           <image src="../../../imgs/r-arrow.png" class="img-arrow"/>
         </view>
       </view>
-      <view class="useritem">
+      <view 
+        class="useritem"
+        data-pagename="setting"
+        bindtap="handleToPage"
+      >
         <view class="usericon">
           <image src="../../../imgs/setting.png" class="img-icon" />
         </view>

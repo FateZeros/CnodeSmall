@@ -40,6 +40,8 @@
     <view 
       class="reply-infos"
       bindtap="handleReply"
+      data-topicid="{{detailData.id}}"
+      data-replyid="{{item.id}}"
     >
       <view 
         class="thumb-cont"
@@ -81,17 +83,18 @@
   <view
     class="foot-item"
     bindtap="handleComment"
+    data-topicId="{{detailData.id}}"
   >
     <image 
       src="../../../imgs/reply-icon.png" 
       class="foot-icon" />
     评论
   </view>
-  <view class="foot-item">
+  <!-- <view class="foot-item">
     <image 
       src="../../../imgs/thumb1.png" 
       class="thumb-icon" 
     />
     点赞
-  </view>
+  </view> -->
 </view>
