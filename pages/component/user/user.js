@@ -9,7 +9,9 @@ Page({
     },
     // hasUserInfo: false,
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    cnodeAccessTK: ''
+    cnodeAccessTK: '',
+    // 未读消息数
+    hasNotReadMsg: 0
   },
   
   // 查看历史登录记录
@@ -33,6 +35,9 @@ Page({
           loginname
         }
       })
+    }
+    if (cnodeAccessTK) {
+      this.getUnReadMsg()
     }
   },
 
@@ -174,5 +179,22 @@ Page({
       default:
         break;  
     } 
+  },
+
+  getUnReadMsg: function() {
+    wx.request({
+      url: 'https://cnodejs.org/api/v1/message/count',
+      method: 'get',
+      data: {
+        accesstoken: this.data.cnodeAccessTK
+      },
+      success: res => {
+        const data = res.data
+        const unReadMsg = data.data
+        this.setData({
+          hasNotReadMsg: unReadMsg || 0
+        })
+      }
+    })
   }
 })

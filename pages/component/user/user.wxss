@@ -71,3 +71,13 @@
 .btn-login {
   font-size: 28rpx;
 }
+
+.unreadMsg {
+  position: absolute;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  top: 24rpx;
+  left: 180rpx;
+  background: red;
+}

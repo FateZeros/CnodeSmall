@@ -61,7 +61,6 @@
       <view
         class="useritem"
         data-pagename="message"
-        bindtap="handleToPage"
       >
         <view class="usericon">
           <image src="../../../imgs/msg.png" class="img-icon" />
@@ -70,8 +69,12 @@
         <view class="rightarrow">
           <image src="../../../imgs/r-arrow.png" class="img-arrow"/>
         </view>
+        <view 
+          class="unreadMsg"
+        >
+        </view>
       </view>
-      <view 
+      <!-- <view 
         class="useritem"
         data-pagename="setting"
         bindtap="handleToPage"
@@ -83,7 +86,7 @@
         <view class="rightarrow">
           <image src="../../../imgs/r-arrow.png" class="img-arrow"/>
         </view>
-      </view>
+      </view> -->
     </block>
   </view>
 </view>

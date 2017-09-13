@@ -3,7 +3,8 @@ const util = require('../../../utils/util.js')
 const tabObj = {
   'ask': '问答',
   'good': '精华',
-  'share': '分享'
+  'share': '分享',
+  'dev': '测试'
 }
 
 Page({
@@ -14,6 +15,7 @@ Page({
   data: {
     detailData: {},
     cnodeAccessTK: '',
+    userId: '',
     thumbCount: 0
   },
 
@@ -27,11 +29,15 @@ Page({
       title: '加载中',
     })
     
-    // 获取cnodeAccessTK
-    const { cnodeAccessTK = '' } = wx.getStorageSync('userLocal')
+    // 获取cnodeAccessTK, 登录用户ID
+    const { 
+      cnodeAccessTK = '',
+      userId = '' 
+    } = wx.getStorageSync('userLocal')
     if (cnodeAccessTK) {
       this.setData({
-        cnodeAccessTK
+        cnodeAccessTK,
+        userId
       })
     }
 
@@ -104,12 +110,19 @@ Page({
         if (data.replies.length > 0) {
           data.replies.forEach(item => {
             item.create_at = util.formatTime(new Date(item.create_at))
+            if (item.reply_id) {
+              // 如果回复reply_id有值，说明是@replyName
+              data.replies.forEach(replyItem => {
+                if (replyItem.id == item.reply_id) {
+                   item.replyName = replyItem.author.loginname
+                }
+              })
+            }
           })
         }
         data.tabName = tabObj[data.tab]
         this.setData({
-          detailData: data,
-          isLoadingPage: false
+          detailData: data
         }, () => {
           wx.hideLoading()
         })
@@ -129,7 +142,7 @@ Page({
         if (tabIndex == 0) {
           if (this.data.cnodeAccessTK) {
             wx.navigateTo({
-              url: `../reply/reply?replyType=reply&topicId=${topicid}&                          replyId=${replyid}`,
+              url: `../reply/reply?replyType=reply&topicId=${topicid}&replyId=${replyid}`,
             })
           } else {
             this.toUserPage()
@@ -143,7 +156,7 @@ Page({
   },
 
   /*
-  * 收藏
+  * 收藏主题
   */
   handleCollect: function() {
     if (this.data.cnodeAccessTK) {
@@ -196,27 +209,35 @@ Page({
         accesstoken: this.data.cnodeAccessTK
       },
       success: res => {
-        const { action } = res.data
-        if (action == 'up') {
-          this.data.detailData.replies.forEach(item => {
-            if (item.id == id) {
-              item.is_uped = true
-              // 本地让点赞数组长度增加1
-              item.ups.push(id)
-            }
+        console.log(res.data)
+        const { success, error_msg, action } = res.data
+        if (success) {
+          if (action == 'up') {
+            this.data.detailData.replies.forEach(item => {
+              if (item.id == id) {
+                item.is_uped = true
+                // 本地让点赞数组长度增加1
+                item.ups.push(id)
+              }
+            })
+          } else {
+            this.data.detailData.replies.forEach(item => {
+              if (item.id == id) {
+                item.is_uped = false
+                // 本地让点赞数组长度减少1
+                item.ups.pop()
+              }
+            })
+          }
+          this.setData({
+            detailData: this.data.detailData
           })
         } else {
-          this.data.detailData.replies.forEach(item => {
-            if (item.id == id) {
-              item.is_uped = false
-              // 本地让点赞数组长度减少1
-              item.ups.pop()
-            }
+          wx.showToast({
+            title: error_msg,
+            image: '../../../imgs/fail.png'
           })
-        }
-        this.setData({
-          detailData: this.data.detailData
-        })
+        } 
       } 
     })
   },
@@ -256,6 +277,61 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+
+  /**
+   * 删除主题 cnode社区貌似没提供删除文章api
+  */
+  // handleDelete: function (e) {
+  //   const { topicid } = e.currentTarget.dataset
+  //   wx.showModal({
+  //     title: '删除',
+  //     content: '确定删除此文章吗？',
+  //     success: res => {
+  //       if (res.confirm) {
+  //         wx.request({
+  //           url: `https://cnodejs.org/api/v1/topics/delete`,
+  //           method: 'post',
+  //           data: {
+  //             accesstoken: this.data.cnodeAccessTK,
+  //             topic_id: topicid
+  //           },
+  //           success: () => {
+  //             wx.showToast({
+  //               title: '删除成功',
+  //               icon: 'success',
+  //               duration: 1500
+  //             })
+  //             setTimeout(() => {
+  //               wx.navigateBack({
+  //                 delta: 1
+  //               })
+  //             }, 1500)
+  //           },
+  //           fail: () => {
+  //             wx.showToast({
+  //               title: '删除失败',
+  //               image: '../../../imgs/fail.png',
+  //               duration: 1500
+  //             })
+  //           }
+  //         })
+  //       } else if (res.cancel) {
+  //         console.log('用户点击取消')
+  //       }
+  //     }
+  //   })
+  // }
+
+  /**
+   * 编辑主题
+  */
+  handleEdit: function(e) {
+    const { topicid } = e.currentTarget.dataset
+    // console.log(this.data.cnodeAccessTK)
+    wx.navigateTo({
+      url: `../publish/publish?publishType=edit&topicId=${topicid}`
     })
   }
 })

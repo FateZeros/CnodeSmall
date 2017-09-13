@@ -158,6 +158,14 @@
   color: #838383;
 }
 
+.reply-touser {
+  height: 40rpx;
+  width: 100%;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  color: blue;
+}
+
 .reply-content {
   width: 100%;
   font-size: 24rpx;

@@ -87,7 +87,8 @@ Page({
       url: 'https://cnodejs.org/api/v1/topics',
       method: 'get',
       data: {
-        tab: 'ask',
+        // tab: 'ask',
+        tab: 'dev', // 测试使用
         page,
         limit: 10
       },
@@ -96,8 +97,7 @@ Page({
         // 没有数据
         if (data.length == 0) {
           this.setData({
-            loadingStatus: 2,
-            isLoadingPage: false
+            loadingStatus: 2
           })
         } else {
           data.forEach(item => {

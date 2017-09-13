@@ -16,7 +16,7 @@
       <text class="info-item">{{detailData.reply_count}}回复</text>
     </view>
   </view>
-  <view
+   <view
      class="content"
   >
     {{detailData.content}}
@@ -63,6 +63,9 @@
         {{item.author.loginname}}
       </view>
       <view class="reply-time">{{item.create_at}}</view>
+      <view class="reply-touser" wx-if="{{item.reply_id}}">
+        @{{item.replyName}}
+      </view>
       <view class="reply-content">
         {{item.content}}
       </view>
@@ -83,18 +86,33 @@
   <view
     class="foot-item"
     bindtap="handleComment"
-    data-topicId="{{detailData.id}}"
+    data-topicid="{{detailData.id}}"
   >
     <image 
-      src="../../../imgs/reply-icon.png" 
+      src="../../../imgs/reply.png" 
       class="foot-icon" />
     评论
   </view>
-  <!-- <view class="foot-item">
+  <view
+    class="foot-item"
+    bindtap="handleEdit"
+    data-topicid="{{detailData.id}}"
+    wx:if="{{detailData.author_id == userId}}"
+  >
     <image 
-      src="../../../imgs/thumb1.png" 
-      class="thumb-icon" 
-    />
-    点赞
+      src="../../../imgs/edit.png" 
+      class="foot-icon" />
+    编辑
+  </view>
+  <!-- <view
+    class="foot-item"
+    bindtap="handleDelete"
+    data-topicid="{{detailData.id}}"
+    wx:if="{{detailData.author_id == userId}}"
+  >
+    <image 
+      src="../../../imgs/delete.png" 
+      class="foot-icon" />
+    删除
   </view> -->
 </view>

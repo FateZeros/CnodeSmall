@@ -91,6 +91,7 @@ Page({
       })
     } else {
       const { replyType, topicId, cnodeAccessTK, replyId } = this.data
+      console.log(replyType == 'comment')
       wx.showLoading({
         title: '提交中',
       })

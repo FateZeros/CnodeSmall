@@ -25,6 +25,7 @@
     <input 
       class="title-input"
       name="topicTitle"
+      value="{{title}}"
     />
   </view>
   <view class="topic-cont">
@@ -35,12 +36,15 @@
       maxlength="-1"
       class="cont-area"
       name="topicCont"
+      value="{{content}}"
     />
   </view>
   <view class="btn-area">
     <button 
       type="primary"
       formType="submit"
+      loading="{{isPublishing}}"
+      disabled="{{isPublishing}}"
     >
       发表
     </button>
