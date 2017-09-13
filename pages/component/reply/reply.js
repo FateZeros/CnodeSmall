@@ -1,4 +1,4 @@
-// pages/component/reply/reply.js
+// reply.js
 Page({
 
   /**
@@ -15,11 +15,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // console.log(options)
     const { replyType, topicId, replyId } = options
-    wx.setNavigationBarTitle({
-      title: replyType == 'comment' ? '评论': '回复'
-    })
 
     // 获取cnodeAccessTK
     const { cnodeAccessTK = '' } = wx.getStorageSync('userLocal')
@@ -36,7 +33,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    wx.setNavigationBarTitle({
+      title: this.data.replyType == 'comment' ? '评论' : '回复'
+    })
   },
 
   /**

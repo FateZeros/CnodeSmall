@@ -16,7 +16,8 @@ Page({
     detailData: {},
     cnodeAccessTK: '',
     userId: '',
-    thumbCount: 0
+    thumbCount: 0,
+    topicId: ''
   },
 
   /**
@@ -37,10 +38,10 @@ Page({
     if (cnodeAccessTK) {
       this.setData({
         cnodeAccessTK,
-        userId
+        userId,
+        topicId: id
       })
     }
-
     this.getTopicDetail(id)
   },
 
@@ -55,14 +56,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    // onShow声明周期
+    if (this.data.topicId) {
+      this.getTopicDetail(this.data.topicId)
+    } 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    
   },
 
   /**
@@ -102,7 +106,7 @@ Page({
       method: 'get',
       data: {
         mdrender: false,
-        accesstoken: this.data.cnodeAccessTK
+        accesstoken: this.data.cnodeAccessTK || ''
       },
       success: res => {
         let { data } = res.data
@@ -150,7 +154,7 @@ Page({
         }
       },
       fail: function (res) {
-        console.log(res.errMsg)
+        // console.log(res.errMsg)
       }
     })
   },
@@ -209,7 +213,6 @@ Page({
         accesstoken: this.data.cnodeAccessTK
       },
       success: res => {
-        console.log(res.data)
         const { success, error_msg, action } = res.data
         if (success) {
           if (action == 'up') {
@@ -246,7 +249,6 @@ Page({
   * 评论
   */
   handleComment: function(e) {
-    console.log(e)
     const { topicid } = e.currentTarget.dataset
     // console.log(this.data.cnodeAccessTK)
     if (this.data.cnodeAccessTK) {
