@@ -6,8 +6,9 @@
 [Cnode社区](https://cnodejs.org)<br>
 在社区注册后 -> 设置 -> Access Token／二维码 <br>
 
-![](https://github.com/FateZeros/CnodeSmall/blob/master/snapshoot/smallCode1.png)
-![](https://github.com/FateZeros/CnodeSmall/blob/master/snapshoot/smallCode2.png)
+<img src="https://github.com/FateZeros/CnodeSmall/blob/master/snapshoot/smallCode1.png" width="187px" height="375px" />
+<img src="https://github.com/FateZeros/CnodeSmall/blob/master/snapshoot/smallCode2.png" width="187px" height="375px" />
+
 
 
 ## 遇到的问题
