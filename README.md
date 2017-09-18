@@ -172,7 +172,7 @@ A:onShow() 进行页面监听，每打开页面一次都会调用。
 Q:二级页面无法navigateTo到一级菜单页面 <br>
 A:使用switchTab
 
-Q:地图map的层级最高，添加footer
+Q:地图map的层级最高，添加footer <br>
 A:使用`wx.getSystemInfo`获取设备高度，然后设置`map的高度 = 设备高度 - footer高度`
 
 ## 其他
